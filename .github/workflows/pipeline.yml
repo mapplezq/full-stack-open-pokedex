@@ -12,11 +12,16 @@ jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: actions/checkout@v2
+        if: ${{ github.event_name == 'push' }}
+        uses: actions/checkout@v2
+      - name: actions/setup-node@v1
+        if: ${{ github.event_name == 'push' }}      
+        uses: actions/setup-node@v1
         with: 
           node-version: '12.x'
       - name: npm install
+        if: ${{ github.event_name == 'push' }}
         run: npm install
       # - name: lint
       #   run: npm run eslint
@@ -26,7 +31,9 @@ jobs:
       #     command: npm run test:e2e
       #     start: npm run start-prod
       #     wait-on: http://localhost:5000
-      - uses: akhileshns/heroku-deploy@v3.8.9
+      - name: akhileshns/heroku-deploy@v3.8.9
+        if: ${{ github.event_name == 'push' }}
+        uses: akhileshns/heroku-deploy@v3.8.9
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "fullstack-zq-pokedex"
