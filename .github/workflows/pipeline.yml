@@ -28,3 +28,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "fullstack-zq-pokedex"
           heroku_email: "mapplezq@gmail.com"
+          healthcheck: "https://fullstack-zq-pokedex.herokuapp.com/version"
+          checkstring: "0.0.1"          
+          rollbackonhealthcheckfailed: true
