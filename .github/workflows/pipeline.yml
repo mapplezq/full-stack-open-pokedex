@@ -23,9 +23,8 @@ jobs:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:5000
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
-          with:
-            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: "fullstack-zq-pokedex" #Must be unique in Heroku
-            heroku_email: "mapplezq@gmail.com"
+      - uses: akhileshns/heroku-deploy@v3.8.9
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "fullstack-zq-pokedex"
+          heroku_email: "mapplezq@gmail.com"
